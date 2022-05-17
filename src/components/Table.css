@@ -1,0 +1,17 @@
+.countrywiseTable{
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 400px;
+}
+
+.countrywiseTable tr{
+    display: flex;
+    justify-content: space-between;
+}
+
+.countrywiseTable td{
+    padding: 0.2rem;
+}
+.countrywiseTable tr:nth-of-type(odd){
+    background-color: rgba(224, 221, 221, 0.664);
+}

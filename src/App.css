@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+}
+
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px                   ;
+}
+
+.app_left{
+  flex: 0.9             ;
+}
+
+.app_header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.app_cards{
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.card-info{
+  margin: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 990px) {
+  .app{
+    flex-direction: column;
+  }
+}

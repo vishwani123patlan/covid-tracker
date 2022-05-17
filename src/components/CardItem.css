@@ -1,0 +1,27 @@
+.card-item{
+    margin: 20px;
+}
+
+.card-item-corona_active{
+    box-shadow: 2px 6px 8px tomato !important;
+}
+
+.card-item-corona_recovered{        
+    box-shadow: 2px 6px 8px green !important;
+}
+
+.card-item-corona_deaths{
+    box-shadow: 2px 6px 8px orange !important;
+}
+
+.corona_active{
+    color: tomato;
+}
+
+.corona_recovered{
+    color: green;
+}
+
+.corona_deaths{
+    color: orange;
+}

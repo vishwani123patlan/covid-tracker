@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardItem from './components/CardItem';
 import Table from './components/Table';
 import LineGraph from './components/LineGraph';
-import { FormControl, Select, MenuItem, Card, CardContent } from '@material-ui/core';
+import { FormControl, Select, MenuItem, Card, CardContent , Button} from '@material-ui/core';
 
 import axios from 'axios';
 import './App.css';
@@ -12,6 +12,7 @@ function App() {
   const [country, setCountry] = useState('worldwide');
   const [countryData, setCountryData] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [graphtype, setGraphtype] = useState("bar");
 
   useEffect(() => {
     axios.get("https://disease.sh/v3/covid-19/all").then((response) => {
@@ -53,6 +54,11 @@ function App() {
       });
     }
   }
+
+  const changeGraphType = (event) => {
+    const graphType = (graphtype=="bar" ? "line" : "bar")
+    setGraphtype(graphType)
+  }
   return (
     <div className="app">
       <div className='app_left'>
@@ -72,13 +78,18 @@ function App() {
             <CardItem title="Recovered Cases" caseClass={"corona_recovered"} cases={countryData.todayRecovered} total_cases={countryData.recovered}/>  
             <CardItem title="Death Cases" caseClass={"corona_deaths"} cases={countryData.todayDeaths} total_cases={countryData.deaths}/>  
         </div>
+        <h1>WorldWide Graphical Representation</h1>
+        <div className='chart-radio'>
+          { (graphtype === "bar") ? <Button variant="contained" onClick={changeGraphType}>Show Line Graph</Button> : <Button variant="contained" onClick={changeGraphType}>Show Bar Graph</Button>}
+        </div>
+        <LineGraph graphType={graphtype} />
       </div>
       <Card className='app_right'>
         <CardContent>
         <h3>Live Cases by Country</h3>
         <Table countries={tableData} />
-        <h3>WorldWide Cases</h3>
-        <LineGraph />
+        <h3 className='worldGraph'>WorldWide Cases</h3>
+        <LineGraph graphType="line" />
         </CardContent>
       </Card>
     </div>

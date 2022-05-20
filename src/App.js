@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CardItem from './components/CardItem';
 import Table from './components/Table';
 import LineGraph from './components/LineGraph';
-import { FormControl, Select, MenuItem, Card, CardContent , Button} from '@material-ui/core';
-
+import { FormControl, Select, MenuItem, Card, CardContent , Button, Avatar} from '@material-ui/core';
+import { buildChartData } from './util';
 import axios from 'axios';
 import './App.css';
 
@@ -63,7 +63,10 @@ function App() {
     <div className="app">
       <div className='app_left'>
         <div className='app_header'>
-          <h1>Covid-19 Tracker</h1>
+          <div className='avatar_heading'>
+            <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/1097/1097326.png" />
+            <h1>Covid-19 Tracker</h1>
+          </div>
           <FormControl className='app_dropdown'>
             <Select onChange={onCountryChange} value={country}>
             <MenuItem value='worldwide'>WorldWide</MenuItem>
@@ -78,7 +81,7 @@ function App() {
             <CardItem title="Recovered Cases" caseClass={"corona_recovered"} cases={countryData.todayRecovered} total_cases={countryData.recovered}/>  
             <CardItem title="Death Cases" caseClass={"corona_deaths"} cases={countryData.todayDeaths} total_cases={countryData.deaths}/>  
         </div>
-        <h1>WorldWide Graphical Representation</h1>
+        <h1>World-Wide Graphical Representation</h1>
         <div className='chart-radio'>
           { (graphtype === "bar") ? <Button variant="contained" onClick={changeGraphType}>Show Line Graph</Button> : <Button variant="contained" onClick={changeGraphType}>Show Bar Graph</Button>}
         </div>
@@ -88,8 +91,21 @@ function App() {
         <CardContent>
         <h3>Live Cases by Country</h3>
         <Table countries={tableData} />
-        <h3 className='worldGraph'>WorldWide Cases</h3>
-        <LineGraph graphType="line" />
+        <div className='guidelines'>
+          <h4>How to Protect Yourself & Others</h4>
+          <ul>
+            <li>Get Vaccinated and stay up to date on your COVID-19 vaccines</li>
+            <li>Wear a mask</li>
+            <li>Stay 6 feet away from others</li>
+            <li>Avoid poorly ventilated spaces and crowds</li>
+            <li>Test to prevent spread to others</li>
+            <li>Wash your hands often</li>
+            <li>Cover coughs and sneezes</li>
+            <li>Clean and disinfect</li>
+            <li>Monitor your health daily</li>
+            <li>Take precautions when you travel</li>
+          </ul>
+        </div>
         </CardContent>
       </Card>
     </div>

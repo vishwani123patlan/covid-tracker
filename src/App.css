@@ -1,5 +1,6 @@
 *{
   margin: 0;
+  font-family: Koulen;
 }
 
 .app{
@@ -12,6 +13,14 @@
   flex: 0.9             ;
 }
 
+.avatar_heading{
+  display: flex;
+}
+
+.avatar_heading h1{
+  margin-left: 10px;
+  color: rgb(255, 38, 0);
+}
 .app_header{
   display: flex;
   justify-content: space-around;
@@ -35,8 +44,29 @@
 .chart-radio{
   display: flex;
 }
+
+.guidelines h4{
+  font-size: 20px;
+  font-weight: bold;
+  padding: 4px;
+}
+
+.guidelines ul{
+  list-style: square;
+}
+.guidelines li{
+  font-size: 18px;
+  padding: 3px;
+  color: rgb(29, 136, 224);
+}
 @media (max-width: 990px) {
   .app{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  *{
     flex-direction: column;
   }
 }

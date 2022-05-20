@@ -5,28 +5,12 @@ import { Line } from 'react-chartjs-2'
 import {CategoryScale, registerables} from 'chart.js'; 
 import Chart from 'chart.js/auto';
 import { rgbToHex } from '@material-ui/core';
+import {buildChartData} from '../util';
 Chart.register(CategoryScale);
 function LineGraph({graphType}) {
     const [data, setData] = useState({});
     const [recoveredData, setRecoveredData] = useState({});
     const [deathData, setDeathData] = useState({});
-
-    const buildChartData = (data, casesType="cases") => {
-        console.log("hello", data)
-        const chartData = [];
-        let lastPointdata;
-        for(let date in data[casesType]) {
-            if(lastPointdata){
-                const newDataPoint = {
-                    x: date,
-                    y: data[casesType][date] - lastPointdata        
-                }
-                chartData.push(newDataPoint);
-            }
-            lastPointdata = data[casesType][date];
-        }
-        return chartData;
-    };
 
     useEffect(() => {
         axios.get("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
@@ -39,7 +23,6 @@ function LineGraph({graphType}) {
             setDeathData(chartDeathdData)
         });
     }, []);
-
   return (
     <div>
         <Line data={
